@@ -1,15 +1,41 @@
-use pyo3::prelude::*;
+// Copyright (c) 2025 Adam Ulichny
+//
+// This source code is licensed under the MIT OR Apache-2.0 license
+// that can be found in the LICENSE-MIT or LICENSE-APACHE files
+// at the root of this source tree.
 
+//! Module to aid in statistical inference. Contains functions for basic descriptive statistics, non parametric methods for comparing distributions etc.
+
+
+use pyo3::prelude::*;
+/// A collection of descriptive statistics, mean, variance etc.
 pub mod descriptive {
     use powerlaw::stats;
     use pyo3::prelude::*;
 
+    /// Calculates the arithmetic mean of a vector.
+    /// # Example
+    /// ```
+    /// use powerlaw::stats;
+    ///
+    /// let data = vec![1.0, 2.0, 3.0, 4.0, 5.0];
+    /// let mu = stats::descriptive::mean(&data); // results in 3.0
+    /// ```
     #[pyfunction]
     fn mean(data: Vec<f64>) -> PyResult<f64> {
         let mu = stats::descriptive::mean(&data);
         Ok(mu)
     }
 
+    /// Calculates the variance of a vector where ddof = degrees of freedom. If ddof=1, the sample variance is returned otherwise the population variance is returned.
+    /// # Example
+    /// ```
+    /// use powerlaw::stats;
+    ///
+    /// let data = vec![1.0, 2.0, 3.0, 4.0, 5.0];
+    /// let sigma_squared_pop = stats::descriptive::variance(&data, 0); // 2.0
+    /// let sigma_squared_samp = stats::descriptive::variance(&data, 1); // 2.5
+    /// ```
     #[pyfunction]
     fn variance(data: Vec<f64>, ddof: u8) -> PyResult<f64> {
         let sigma2 = stats::descriptive::variance(&data, ddof);
@@ -29,16 +55,26 @@ pub mod descriptive {
     }
 }
 
+/// Functions in support of randomization.
 pub mod random {
     use powerlaw::stats;
     use pyo3::prelude::*;
 
+    /// Sample *n* elements with probability U(0,1) with replacement.
+    /// # Example
+    /// ```
+    /// use powerlaw::stats;
+    ///
+    /// let data = vec![1.0, 2.0, 3.0, 4.0, 5.0];
+    /// let X = stats::random::random_choice(&data, 10); // could look like: [2.0, 2.0, 2.0, 3.0, 3.0, 3.0, 4.0, 3.0, 5.0, 4.0]
+    /// ```
     #[pyfunction]
     fn random_choice(data: Vec<f64>, size: usize) -> PyResult<Vec<f64>> {
         let samp = stats::random::random_choice(&data, size);
         Ok(samp)
     }
 
+    /// Generate *n* random variates from U(0,1).
     #[pyfunction]
     fn random_uniform(n: usize) -> PyResult<Vec<f64>> {
         let u = stats::random::random_uniform(n);
@@ -58,14 +94,12 @@ pub mod random {
     }
 }
 
+/// Supporting functions for Kolmogorov–Smirnov testing for similarity between empirical and reference cumulative distribution functions.
+/// Given this function is called iteratively over the data during the goodness of fit portion in [crate::dist::pareto::gof()], it requires the observed data to be sorted.
+/// Thank you @Google Gemini for helping with handling Rust generics to Python.
 pub mod ks {
     use pyo3::exceptions::{PyTypeError, PyValueError};
     use pyo3::prelude::*;
-
-    // -----------------------------------------------------------------
-    // 1. YOUR ORIGINAL RUST HELPER LOGIC
-    // (I've added standard implementations for these) - Thank you @Google Gemini
-    // -----------------------------------------------------------------
 
     /// The D+ statistic measures the largest amount by which the ECDF is above the theoretical CDF.
     fn compute_dplus(cdfvals: &[f64], n: usize) -> f64 {
@@ -84,11 +118,6 @@ pub mod ks {
             .map(|i| cdfvals[i] - i as f64 / n as f64)
             .fold(f64::MIN, f64::max)
     }
-
-    // -----------------------------------------------------------------
-    // 2. THE PYFUNCTION WRAPPER
-    // This replaces your generic `ks_1sam_sorted` function
-    // -----------------------------------------------------------------
 
     /// 1 sample KS test based on a known cdf.
     ///
@@ -146,10 +175,6 @@ pub mod ks {
 
         Ok((dplus, dminus, d))
     }
-
-    // -----------------------------------------------------------------
-    // 3. THE MODULE CREATION FUNCTION
-    // -----------------------------------------------------------------
 
     /// Creates the 'ks' Python submodule
     pub fn create_module(py: Python<'_>) -> PyResult<Bound<'_, PyModule>> {
