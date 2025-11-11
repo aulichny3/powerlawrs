@@ -6,7 +6,6 @@
 
 //! Module to aid in statistical inference. Contains functions for basic descriptive statistics, non parametric methods for comparing distributions etc.
 
-
 use pyo3::prelude::*;
 /// A collection of descriptive statistics, mean, variance etc.
 pub mod descriptive {
@@ -137,7 +136,7 @@ pub mod ks {
     fn ks_1sam_sorted(
         py: Python<'_>,
         sorted_x: Vec<f64>,
-        cdf_func: PyObject,
+        cdf_func: Py<PyAny>,
     ) -> PyResult<(f64, f64, f64)> {
         let n = sorted_x.len();
         if n == 0 {
