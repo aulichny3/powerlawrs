@@ -6,7 +6,6 @@
 
 //! Module to aid in statistical inference. Contains functions for basic descriptive statistics, non parametric methods for comparing distributions etc.
 
-use pyo3::prelude::*;
 /// A collection of descriptive statistics, mean, variance etc.
 pub mod descriptive {
     use powerlaw::stats;
