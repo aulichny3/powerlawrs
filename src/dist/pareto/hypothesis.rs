@@ -7,9 +7,9 @@
 //! PyO3 wrappers for the hypothesis testing functions of the Pareto distribution from the `powerlaw` crate.
 //! This file provides thin wrappers that call the functionality from the `powerlaw` crate.
 
-use pyo3::prelude::*;
 use powerlaw::dist::pareto::hypothesis as rust_hypothesis;
 use powerlaw::dist::pareto::hypothesis::H0;
+use pyo3::prelude::*;
 
 /// A Python-compatible wrapper for the `H0` (null hypothesis) struct.
 /// It holds the results of a hypothesis test.
@@ -51,7 +51,13 @@ impl From<H0> for PyH0 {
 
 /// Python wrapper for the `hypothesis_test` function.
 #[pyfunction]
-fn hypothesis_test(data: Vec<f64>, prec: f64, alpha: f64, x_min: f64, best_d: f64) -> PyResult<PyH0> {
+fn hypothesis_test(
+    data: Vec<f64>,
+    prec: f64,
+    alpha: f64,
+    x_min: f64,
+    best_d: f64,
+) -> PyResult<PyH0> {
     let result = rust_hypothesis::hypothesis_test(data, prec, alpha, x_min, best_d);
     Ok(result.into())
 }

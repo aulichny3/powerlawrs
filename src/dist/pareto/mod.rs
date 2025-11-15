@@ -6,9 +6,9 @@
 
 //! PyO3 wrappers for the Pareto distribution functions from the `powerlaw` crate.
 
-use pyo3::prelude::*;
 use powerlaw::dist::pareto::Pareto;
 use powerlaw::dist::Distribution;
+use pyo3::prelude::*;
 
 pub mod estimation;
 pub mod gof;

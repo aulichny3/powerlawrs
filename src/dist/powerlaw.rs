@@ -7,8 +7,8 @@
 //! PyO3 wrappers for the generic Power-Law distribution functions from the `powerlaw` crate.
 //! This file provides thin wrappers that call the functionality from the `powerlaw` crate.
 
-use pyo3::prelude::*;
 use powerlaw::dist::{powerlaw::Powerlaw, Distribution};
+use pyo3::prelude::*;
 
 /// A Python-compatible wrapper for the `Powerlaw` struct from the `powerlaw` crate.
 ///
@@ -97,7 +97,6 @@ fn alpha_hat(data: Vec<f64>, x_min: f64) -> PyResult<f64> {
     let result = powerlaw::dist::powerlaw::alpha_hat(&data, x_min);
     Ok(result)
 }
-
 
 /// Creates the 'powerlaw' Python submodule.
 pub fn create_module(py: Python<'_>) -> PyResult<Bound<'_, PyModule>> {

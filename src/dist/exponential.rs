@@ -7,8 +7,8 @@
 //! PyO3 wrappers for the Exponential distribution from the `powerlaw` crate.
 //! This file provides thin wrappers that call the functionality from the `powerlaw` crate.
 
-use pyo3::prelude::*;
 use powerlaw::dist::{exponential::Exponential, Distribution};
+use pyo3::prelude::*;
 
 /// A Python-compatible wrapper for the `Exponential` struct from the `powerlaw` crate.
 ///

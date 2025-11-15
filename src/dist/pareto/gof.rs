@@ -7,9 +7,9 @@
 //! PyO3 wrappers for the goodness-of-fit functions of the Pareto distribution from the `powerlaw` crate.
 //! This file provides thin wrappers that call the functionality from the `powerlaw` crate.
 
-use pyo3::prelude::*;
 use powerlaw::dist::pareto::gof as rust_gof;
 use powerlaw::dist::pareto::gof::Fitment;
+use pyo3::prelude::*;
 
 /// A Python-compatible wrapper for the `Fitment` struct.
 /// It holds the results of a goodness-of-fit test.
@@ -29,7 +29,12 @@ struct PyFitment {
 impl PyFitment {
     #[new]
     fn new(x_min: f64, alpha: f64, d: f64, len_tail: usize) -> Self {
-        PyFitment { x_min, alpha, d, len_tail }
+        PyFitment {
+            x_min,
+            alpha,
+            d,
+            len_tail,
+        }
     }
 
     fn __repr__(&self) -> String {

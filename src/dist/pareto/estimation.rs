@@ -7,8 +7,8 @@
 //! PyO3 wrappers for the estimation functions of the Pareto distribution from the `powerlaw` crate.
 //! This file provides thin wrappers that call the functionality from the `powerlaw` crate.
 
-use pyo3::prelude::*;
 use powerlaw::dist::pareto::estimation as rust_estimation;
+use pyo3::prelude::*;
 
 /// Python wrapper for the `find_alphas_fast` function.
 #[pyfunction]
