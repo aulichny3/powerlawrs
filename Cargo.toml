@@ -1,7 +1,13 @@
 [package]
 name = "powerlawrs"
-version = "0.0.2"
+version = "0.0.3"
 edition = "2021"
+license = "MIT OR Apache-2.0"
+authors = ["Adam Ulichny <aulichny@protonmail.com>"]
+description = "A fast package for analyzing Power-Law distributions in empirical data written in Rust."
+categories = ["mathematics", "finance", "science", "powerlaw", "pareto"]
+repository = "https://github.com/aulichny3/powerlawrs.git"
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [lib]

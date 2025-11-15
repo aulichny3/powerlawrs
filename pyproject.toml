@@ -18,6 +18,10 @@ authors = [
   {name = "Adam Ulichny"}
 ]
 keywords = ["mathematics", "finance", "science", "powerlaw", "pareto"]
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+license-files = ["LICENSE-APACHE", "LICENSE-MIT"]
+version = "0.0.3"
 
 [project.urls]
 repository = "https://github.com/aulichny3/powerlawrs"
