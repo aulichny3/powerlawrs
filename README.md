@@ -18,24 +18,38 @@
 
 -   Python 3.8+
 -   Rust (the package is built from Rust source)
--   `uv` (this project uses `uv` for environment and package management)
+-   `uv` (this project uses [uv](https://docs.astral.sh/uv/) for environment and package management)
 
-### Setup and Installation
+### Setup and Installation via pip
+1. **Create and activate a virtual environment:**
+    ```bash
+    # Create the environment
+    uv venv -p powerlaw
+
+    # Activate the environment
+    source powerlaw/bin/activate
+    ```
+2. **Install the package.**
+    ```bash
+    uv pip install powerlawrs
+    ```
+
+### Setup and Installation from Source
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/aulichny3/powerlawrs_dev.git
-    cd powerlawrs_dev
+    git clone https://github.com/aulichny3/powerlawrs.git
+    cd powerlawrs
     ```
 
 2.  **Create and activate a virtual environment:**
-    This project is configured to use the `power` virtual environment with `uv`.
+    This project is configured to use the `powerlaw` virtual environment with `uv`.
     ```bash
     # Create the environment
-    uv venv -p python3.8 power
+    uv venv -p powerlaw
 
     # Activate the environment
-    source power/bin/activate
+    source powerlaw/bin/activate
     ```
 
 3.  **Install the package:**
@@ -52,7 +66,7 @@
 ## Dependencies
 
 -   The core `powerlawrs` library has no Python dependencies.
--   Development dependencies (for running the example notebook) are listed in `requirements.txt` and include:
+-   Development dependencies (for running the example [notebook](https://github.com/aulichny3/powerlawrs/blob/main/Notebooks/Example.ipynb)) are listed in `requirements.txt` and include:
     -   `jupyterlab`: For running the example notebook.
     -   `numpy`: Used in the example notebook.
     -   `polars`: Used for data loading in the example notebook.
@@ -94,7 +108,7 @@ The `Notebooks/Example.ipynb` file provides a detailed walkthrough of the packag
 
 ```bash
 # Make sure your virtual environment is active
-source power/bin/activate
+source powerlaw/bin/activate
 
 # Start Jupyter Lab
 uv run jupyter lab
