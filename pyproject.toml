@@ -12,6 +12,16 @@ classifiers = [
 ]
 dynamic = ["version"]
 dependencies = []
+description = "A fast package for analyzing Power-Law distributions in empirical data written in Rust."
+authors = [
+  {email = "aulichny@protonmail.com"},
+  {name = "Adam Ulichny"}
+]
+keywords = ["mathematics", "finance", "science", "powerlaw", "pareto"]
+
+[project.urls]
+repository = "https://github.com/aulichny3/powerlawrs"
+changelog = "github.com/me/spam/blob/master/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = [
@@ -23,5 +33,6 @@ dev = [
 python-source = "python"
 module-name = "powerlawrs._powerlawrs"
 features = ["pyo3/extension-module"]
+sdist-include = ["LICENSE-APACHE", "LICENSE-MIT", "README.md"]
 [tool.uv]
 package = false
