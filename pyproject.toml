@@ -4,6 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "powerlawrs"
+description = "A fast package for analyzing Power-Law distributions in empirical data written in Rust."
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Rust",
@@ -12,7 +13,6 @@ classifiers = [
 ]
 dynamic = ["version"]
 dependencies = []
-description = "A fast package for analyzing Power-Law distributions in empirical data written in Rust."
 authors = [
   {email = "aulichny@protonmail.com"},
   {name = "Adam Ulichny"}
@@ -21,7 +21,6 @@ keywords = ["mathematics", "finance", "science", "powerlaw", "pareto"]
 
 [project.urls]
 repository = "https://github.com/aulichny3/powerlawrs"
-changelog = "github.com/me/spam/blob/master/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = [
