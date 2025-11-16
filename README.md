@@ -70,7 +70,7 @@
     -   `jupyterlab`: For running the example notebooks.
     -   `numpy`: Used in the example notebooks.
     -   `polars`: Used for data loading in the example notebooks.
-    -   `matplotlib`: Used for data-via in the Quickstart notebook.
+    -   `matplotlib`: Used for data-viz in the Quickstart notebook.
 
 ## Usage
 
