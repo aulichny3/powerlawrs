@@ -66,10 +66,11 @@
 ## Dependencies
 
 -   The core `powerlawrs` library has no Python dependencies.
--   Development dependencies (for running the example [notebook](https://github.com/aulichny3/powerlawrs/blob/main/Notebooks/Example.ipynb)) are listed in `requirements.txt` and include:
-    -   `jupyterlab`: For running the example notebook.
-    -   `numpy`: Used in the example notebook.
-    -   `polars`: Used for data loading in the example notebook.
+-   Development dependencies (for running the example [notebooks](https://github.com/aulichny3/powerlawrs/blob/main/Notebooks/)) are listed in `requirements.txt` and include:
+    -   `jupyterlab`: For running the example notebooks.
+    -   `numpy`: Used in the example notebooks.
+    -   `polars`: Used for data loading in the example notebooks.
+    -   `matplotlib`: Used for data-via in the Quickstart notebook.
 
 ## Usage
 
@@ -77,7 +78,7 @@
 
 ### Functional API (Recommended)
 
-The `powerlawrs.fit()` function is the most straightforward way to fit a power-law distribution to your data.
+The `powerlawrs.fit()` function is the most straightforward way to fit a power-law distribution to your data. See the [Quickstart](https://github.com/aulichny3/powerlawrs/blob/main/Notebooks/01%20-%20Quickstart.ipynb) notebook for an example.
 
 ```python
 import powerlawrs
@@ -100,11 +101,11 @@ print(f"Tail Length: {fit_results.len_tail}")
 
 ### Class-based API
 
-For more fine-grained control, you can see the API examples in `Notebooks/Example.ipynb`.
+For more fine-grained control, you can see the API examples in `Notebooks/02 - API.ipynb`.
 
-### Jupyter Notebook Example
+### Jupyter Notebook Examples
 
-The `Notebooks/Example.ipynb` file provides a detailed walkthrough of the package's functionalities. After installing the development dependencies, you can run it with:
+The `Notebooks folders provides a detailed walkthrough of the package's functionalities. After installing the development dependencies, you can run it with:
 
 ```bash
 # Make sure your virtual environment is active
