@@ -16,4 +16,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 pyo3 = "0.27.1"
-powerlaw = "0.0.12"
+powerlaw = "0.0.14"

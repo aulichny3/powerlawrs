@@ -51,7 +51,7 @@ impl From<Fitment> for PyFitment {
         PyFitment {
             x_min: fit.x_min,
             alpha: fit.alpha,
-            d: fit.D,
+            d: fit.d,
             len_tail: fit.len_tail,
         }
     }
