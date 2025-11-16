@@ -101,7 +101,7 @@ print(f"Tail Length: {fit_results.len_tail}")
 
 ### Class-based API
 
-For more fine-grained control, you can see the API examples in `Notebooks/02 - API.ipynb`.
+For more fine-grained control, you can see the API examples in [Notebooks/02 - API.ipynb](https://github.com/aulichny3/powerlawrs/blob/main/Notebooks/02%20-%20API.ipynb).
 
 ### Jupyter Notebook Examples
 
@@ -112,7 +112,7 @@ The `Notebooks folders provides a detailed walkthrough of the package's function
 source powerlaw/bin/activate
 
 # Start Jupyter Lab
-uv run jupyter lab
+uv run --active jupyter lab
 ```
 
 ## Limitations
