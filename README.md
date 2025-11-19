@@ -55,8 +55,11 @@
 3.  **Install the package:**
     To install the package in editable mode and include all development dependencies, run:
     ```bash
+    # Install maturin
+    uv tool install maturin
+
     # Install the package using maturin
-    maturin develop
+    maturin develop --uv
 
     # Install development dependencies
     uv pip install -r requirements.txt
