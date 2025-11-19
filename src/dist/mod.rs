@@ -11,6 +11,7 @@ use pyo3::prelude::*;
 pub mod exponential;
 pub mod pareto;
 pub mod powerlaw;
+pub mod lognormal;
 
 /// Creates the 'dist' Python submodule.
 pub fn create_module(py: Python<'_>) -> PyResult<Bound<'_, PyModule>> {
@@ -18,5 +19,6 @@ pub fn create_module(py: Python<'_>) -> PyResult<Bound<'_, PyModule>> {
     m.add_submodule(&pareto::create_module(py)?)?;
     m.add_submodule(&powerlaw::create_module(py)?)?;
     m.add_submodule(&exponential::create_module(py)?)?;
+    m.add_submodule(&lognormal::create_module(py)?)?;
     Ok(m)
 }
