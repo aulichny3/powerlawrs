@@ -72,6 +72,12 @@ impl PyPowerlaw {
         self.inner.rv(u)
     }
 
+    /// Calculates the log-likelihood of the data given the distribution.  Note: The log likelihoods are not summed.
+    #[pyo3(text_signature = "($self, u)")]
+    fn loglikelihood(&self, x: Vec<f64>) -> Vec<f64> {
+        self.inner.loglikelihood(&x)
+    }
+
     #[getter]
     fn alpha(&self) -> f64 {
         self.inner.alpha

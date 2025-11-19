@@ -4,40 +4,40 @@
 // that can be found in the LICENSE-MIT or LICENSE-APACHE files
 // at the root of this source tree.
 
-//! PyO3 wrappers for the Exponential distribution from the `powerlaw` crate.
+//! PyO3 wrappers for the Lognormal distribution from the `powerlaw` crate.
 //! This file provides thin wrappers that call the functionality from the `powerlaw` crate.
 
-use powerlaw::dist::{exponential::Exponential, Distribution};
+use powerlaw::dist::{lognormal::Lognormal, Distribution};
 use pyo3::prelude::*;
 
-/// A Python-compatible wrapper for the `Exponential` struct from the `powerlaw` crate.
+/// A Python-compatible wrapper for the `Lognormal` struct from the `powerlaw` crate.
 ///
-/// This class represents an Exponential distribution.
+/// This class represents an Lognormal distribution.
 /// It does not contain any logic itself, but calls the underlying Rust implementation.
-#[pyclass(name = "Exponential")]
-struct PyExponential {
-    inner: Exponential,
+#[pyclass(name = "Lognormal")]
+struct PyLognormal{
+    inner: Lognormal,
 }
 
 #[pymethods]
-impl PyExponential {
-    /// Creates a new Exponential distribution instance.
+impl PyLognormal{
+    /// Creates a new Lognormal distribution instance.
     ///
     /// Args:
-    ///     lambda (float): The rate parameter of the distribution. Must be > 0.
+    ///     mu (float): The mean of the underlying normal distribution.
+    ///     sigma (float): The standard deviation of the underlying normal distribution. Must be > 0.
     #[new]
-    fn new(lambda: f64) -> PyResult<Self> {
-        if lambda <= 0.0 {
+    fn new(mu: f64, sigma: f64) -> PyResult<Self> {
+        if sigma <= 0.0 {
             return Err(pyo3::exceptions::PyValueError::new_err(
-                "lambda must be positive.",
+                "sigma must be positive.",
             ));
         }
-        // This creates an instance of the original Exponential struct from the `powerlaw` crate.
-        Ok(PyExponential {
-            inner: Exponential { lambda },
+        // This creates an instance of the original Lognormal struct from the `powerlaw` crate.
+        Ok(PyLognormal{
+            inner: Lognormal { mu, sigma },
         })
     }
-
     /// Calls the underlying `pdf` method from the `powerlaw` crate.
     #[pyo3(text_signature = "($self, x)")]
     fn pdf(&self, x: f64) -> f64 {
@@ -72,14 +72,19 @@ impl PyExponential {
     }
 
     #[getter]
-    fn lambda(&self) -> f64 {
-        self.inner.lambda
+    fn mu(&self) -> f64 {
+        self.inner.mu
+    }
+
+    #[getter]
+    fn sigma(&self) -> f64 {
+        self.inner.sigma
     }
 }
 
-/// Creates the 'exponential' Python submodule.
+/// Creates the 'lognormal' Python submodule.
 pub fn create_module(py: Python<'_>) -> PyResult<Bound<'_, PyModule>> {
-    let m = PyModule::new(py, "exponential")?;
-    m.add_class::<PyExponential>()?;
+    let m = PyModule::new(py, "lognormal")?;
+    m.add_class::<PyLognormal>()?;
     Ok(m)
 }
