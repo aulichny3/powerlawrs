@@ -12,7 +12,11 @@ use pyo3::prelude::*;
 
 /// A Python-compatible wrapper for the `Exponential` struct from the `powerlaw` crate.
 ///
-/// This class represents an Exponential distribution.
+/// Creates a new Exponential distribution instance.
+///
+/// Args:
+///     lambda (float): The rate parameter of the distribution. Must be > 0.
+///
 /// It does not contain any logic itself, but calls the underlying Rust implementation.
 #[pyclass(name = "Exponential")]
 struct PyExponential {

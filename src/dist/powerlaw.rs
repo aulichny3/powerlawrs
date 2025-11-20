@@ -12,8 +12,13 @@ use pyo3::prelude::*;
 
 /// A Python-compatible wrapper for the `Powerlaw` struct from the `powerlaw` crate.
 ///
-/// This class represents a generic Power-Law distribution. The `alpha` parameter
-/// here is equivalent to `alpha + 1` in the Pareto Type I distribution.
+/// Creates a new Powerlaw distribution instance.
+/// The `alpha` parameter is equivalent to `alpha + 1` in the Pareto Type I distribution.
+///
+/// Args:
+///     alpha (float): The scaling exponent of the distribution. Must be > 1.
+///     x_min (float): The minimum value of the distribution. Must be > 0.
+///
 /// It does not contain any logic itself, but calls the underlying Rust implementation.
 #[pyclass(name = "Powerlaw")]
 struct PyPowerlaw {
