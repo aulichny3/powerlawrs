@@ -12,15 +12,20 @@ use pyo3::prelude::*;
 
 /// A Python-compatible wrapper for the `Lognormal` struct from the `powerlaw` crate.
 ///
-/// This class represents an Lognormal distribution.
+/// Creates a new Lognormal distribution instance.
+///
+/// Args:
+///     mu (float): The mean of the underlying normal distribution.
+///     sigma (float): The standard deviation of the underlying normal distribution. Must be > 0.
+///
 /// It does not contain any logic itself, but calls the underlying Rust implementation.
 #[pyclass(name = "Lognormal")]
-struct PyLognormal{
+struct PyLognormal {
     inner: Lognormal,
 }
 
 #[pymethods]
-impl PyLognormal{
+impl PyLognormal {
     /// Creates a new Lognormal distribution instance.
     ///
     /// Args:
@@ -34,7 +39,7 @@ impl PyLognormal{
             ));
         }
         // This creates an instance of the original Lognormal struct from the `powerlaw` crate.
-        Ok(PyLognormal{
+        Ok(PyLognormal {
             inner: Lognormal { mu, sigma },
         })
     }

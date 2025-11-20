@@ -16,7 +16,12 @@ pub mod hypothesis;
 
 /// A Python-compatible wrapper for the `Pareto` struct from the `powerlaw` crate.
 ///
-/// This class represents a Pareto Type I distribution.
+/// Creates a new Pareto Type I distribution instance.
+///
+/// Args:
+///     alpha (float): The shape parameter of the distribution. Must be > 0.
+///     x_min (float): The minimum value of the distribution (scale parameter). Must be > 0.
+///
 /// It does not contain any logic itself, but calls the underlying Rust implementation.
 #[pyclass(name = "Pareto")]
 struct PyPareto {

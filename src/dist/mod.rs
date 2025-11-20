@@ -9,9 +9,9 @@
 use pyo3::prelude::*;
 
 pub mod exponential;
+pub mod lognormal;
 pub mod pareto;
 pub mod powerlaw;
-pub mod lognormal;
 
 /// Creates the 'dist' Python submodule.
 pub fn create_module(py: Python<'_>) -> PyResult<Bound<'_, PyModule>> {
