@@ -66,7 +66,7 @@ impl PyLognormal{
     }
 
     /// Calculates the log-likelihood of the data given the distribution. Note: The log likelihoods are not summed.
-    #[pyo3(text_signature = "($self, u)")]
+    #[pyo3(text_signature = "($self, x)")]
     fn loglikelihood(&self, x: Vec<f64>) -> Vec<f64> {
         self.inner.loglikelihood(&x)
     }
