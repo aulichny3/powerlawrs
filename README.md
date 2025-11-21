@@ -24,7 +24,7 @@
 1. **Create and activate a virtual environment:**
     ```bash
     # Create the environment
-    uv venv -p powerlaw
+    uv venv powerlaw
 
     # Activate the environment
     source powerlaw/bin/activate
@@ -83,14 +83,15 @@
 
 The `powerlawrs.fit()` function is the most straightforward way to fit a power-law distribution to your data. See the [Quickstart](https://github.com/aulichny3/powerlawrs/blob/main/Notebooks/01%20-%20Quickstart.ipynb) notebook for an example.
 
+![Python demo gif] (./github/demo.gif)
+
 ```python
 import powerlawrs
 import polars as pl
 
 # 1. Load your data into a list or Polars Series
 # The data should be a 1-dimensional array of numbers.
-file = "reference_data/blackouts.txt"
-data = pl.read_csv(file, has_header=False).to_series().to_list()
+data = pl.read_csv("reference_data/blackouts.txt", has_header=True).to_series()
 
 # 2. Fit the data
 fit_results = powerlawrs.fit(data)
