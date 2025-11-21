@@ -83,7 +83,7 @@
 
 The `powerlawrs.fit()` function is the most straightforward way to fit a power-law distribution to your data. See the [Quickstart](https://github.com/aulichny3/powerlawrs/blob/main/Notebooks/01%20-%20Quickstart.ipynb) notebook for an example.
 
-![Python demo gif] (.github/demo.gif)
+![Python demo gif](.github/demo.gif)
 
 ```python
 import powerlawrs
