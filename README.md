@@ -77,7 +77,7 @@
 
 ## Usage
 
-`powerlawrs` offers two primary ways to analyze your data: a simple functional API and a more detailed class-based API.
+The `powerlawrs` package offers two primary ways to analyze your data: a simple functional API and a more detailed class-based API.
 
 ### Functional API (Recommended)
 
@@ -104,6 +104,16 @@ print(f"Tail Length: {fit_results.len_tail}")
 ```
 
 ### Class-based API
+
+#### Module Hierarchy
+
+The `powerlawrs` package is structured hierarchically to organize its functionality logically and provide a clean API. The main submodules, accessible directly from `import powerlawrs`, are:
+
+*   **`powerlawrs.dist`**: Contains implementations of various probability distributions (e.g., Pareto, Lognormal, Exponential) for fitting and analysis.
+*   **`powerlawrs.stats`**: Provides statistical functions, including descriptive statistics, random number generation tools, and goodness-of-fit tests like the Kolmogorov-Smirnov (KS) test.
+*   **`powerlawrs.util`**: Offers utility functions, such as data loading, parameter calculation for simulations, and synthetic data generation.
+
+This structure allows for clear separation of concerns and easier navigation of the library's features. For example, to access the KS test functions, you would typically import from `powerlawrs.stats.ks`.
 
 For more fine-grained control, you can see the API examples in [Notebooks/02 - API.ipynb](https://github.com/aulichny3/powerlawrs/blob/main/Notebooks/02%20-%20API.ipynb).
 
