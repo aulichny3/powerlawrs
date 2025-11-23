@@ -12,28 +12,38 @@ pub mod descriptive {
     use pyo3::prelude::*;
 
     /// Calculates the arithmetic mean of a vector.
-    /// # Example
-    /// ```
-    /// use powerlaw::stats;
     ///
-    /// let data = vec![1.0, 2.0, 3.0, 4.0, 5.0];
-    /// let mu = stats::descriptive::mean(&data); // results in 3.0
-    /// ```
+    /// Example
+    /// -------
+    /// .. code-block:: python
+    ///
+    ///    import powerlawrs
+    ///
+    ///    data = [1.0, 2.0, 3.0, 4.0, 5.0]
+    ///    mu = powerlawrs.stats.descriptive.mean(data)
+    ///    # mu is 3.0
     #[pyfunction]
     fn mean(data: Vec<f64>) -> PyResult<f64> {
         let mu = stats::descriptive::mean(&data);
         Ok(mu)
     }
 
-    /// Calculates the variance of a vector where ddof = degrees of freedom. If ddof=1, the sample variance is returned otherwise the population variance is returned.
-    /// # Example
-    /// ```
-    /// use powerlaw::stats;
+    /// Calculates the variance of a vector where ``ddof`` = degrees of freedom. If ``ddof=1``, the sample variance is returned otherwise the population variance is returned.
     ///
-    /// let data = vec![1.0, 2.0, 3.0, 4.0, 5.0];
-    /// let sigma_squared_pop = stats::descriptive::variance(&data, 0); // 2.0
-    /// let sigma_squared_samp = stats::descriptive::variance(&data, 1); // 2.5
-    /// ```
+    /// Example
+    /// -------
+    /// .. code-block:: python
+    ///
+    ///    import powerlawrs
+    ///
+    ///    data = [1.0, 2.0, 3.0, 4.0, 5.0]
+    ///    # Population variance (ddof=0)
+    ///    sigma_sq_pop = powerlawrs.stats.descriptive.variance(data, 0)
+    ///    # sigma_sq_pop is 2.0
+    ///
+    ///    # Sample variance (ddof=1)
+    ///    sigma_sq_samp = powerlawrs.stats.descriptive.variance(data, 1)
+    ///    # sigma_sq_samp is 2.5
     #[pyfunction]
     fn variance(data: Vec<f64>, ddof: u8) -> PyResult<f64> {
         let sigma2 = stats::descriptive::variance(&data, ddof);
@@ -58,21 +68,25 @@ pub mod random {
     use powerlaw::stats;
     use pyo3::prelude::*;
 
-    /// Sample *n* elements with probability U(0,1) with replacement.
-    /// # Example
-    /// ```
-    /// use powerlaw::stats;
+    /// Sample ``n`` elements with probability U(0,1) with replacement.
     ///
-    /// let data = vec![1.0, 2.0, 3.0, 4.0, 5.0];
-    /// let X = stats::random::random_choice(&data, 10); // could look like: [2.0, 2.0, 2.0, 3.0, 3.0, 3.0, 4.0, 3.0, 5.0, 4.0]
-    /// ```
+    /// Example
+    /// -------
+    /// .. code-block:: python
+    ///
+    ///    import powerlawrs
+    ///
+    ///    data = [1.0, 2.0, 3.0, 4.0, 5.0]
+    ///    # Get 10 random samples from data with replacement
+    ///    samples = powerlawrs.stats.random.random_choice(data, 10)
+    ///    # len(samples) will be 10
     #[pyfunction]
     fn random_choice(data: Vec<f64>, size: usize) -> PyResult<Vec<f64>> {
         let samp = stats::random::random_choice(&data, size);
         Ok(samp)
     }
 
-    /// Generate *n* random variates from U(0,1).
+    /// Generate ``n`` random variates from U(0,1).
     #[pyfunction]
     fn random_uniform(n: usize) -> PyResult<Vec<f64>> {
         let u = stats::random::random_uniform(n);

@@ -9,14 +9,16 @@
 use powerlaw::util;
 use pyo3::prelude::*;
 
-/// Returns *n* quantity of evenly spaced numbers over a specified interval. Motivated by numpy's [linspace](https://numpy.org/doc/stable/reference/generated/numpy.linspace.html).
+/// Returns ``n`` quantity of evenly spaced numbers over a specified interval. Motivated by numpy's `linspace <https://numpy.org/doc/stable/reference/generated/numpy.linspace.html>`_.
 ///
-/// # Example
-/// ```
-/// use powerlaw::util;
+/// Example
+/// -------
+/// .. code-block:: python
 ///
-/// let numbers:Vec<f64> = util::linspace(0.,1., 5); // results in [0.0, 0.25, 0.5, 0.75, 1.0]
-/// ```
+///    import powerlawrs
+///
+///    numbers = powerlawrs.util.linspace(0.0, 1.0, 5)
+///    # numbers is [0.0, 0.25, 0.5, 0.75, 1.0]
 #[pyfunction]
 fn linspace(start: f64, end: f64, n: usize) -> PyResult<Vec<f64>> {
     let set = util::linspace(start, end, n);
