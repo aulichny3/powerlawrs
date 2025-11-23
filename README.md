@@ -59,7 +59,7 @@
     uv tool install maturin
 
     # Install the package using maturin
-    maturin develop --uv
+    uv tool run maturin develop --uv
 
     # Install development dependencies
     uv pip install -r requirements.txt
