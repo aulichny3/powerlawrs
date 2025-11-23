@@ -3455,7 +3455,7 @@ wheels = [
 
 [[package]]
 name = "powerlawrs"
-version = "0.0.9"
+version = "0.0.10"
 source = { virtual = "." }
 
 [package.optional-dependencies]
