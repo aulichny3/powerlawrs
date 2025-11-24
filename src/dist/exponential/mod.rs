@@ -7,6 +7,8 @@
 //! PyO3 wrappers for the Exponential distribution from the `powerlaw` crate.
 //! This file provides thin wrappers that call the functionality from the `powerlaw` crate.
 
+pub mod estimation;
+
 use powerlaw::dist::{exponential::Exponential, Distribution};
 use pyo3::prelude::*;
 
@@ -16,7 +18,7 @@ use pyo3::prelude::*;
 ///
 /// Args:
 ///     lambda (float): The rate parameter of the distribution. Must be > 0.
-///
+///     x_min (float): The minimum value of the distribution (scale parameter). Must be > 0.
 /// It does not contain any logic itself, but calls the underlying Rust implementation.
 #[pyclass(name = "Exponential")]
 struct PyExponential {
@@ -30,7 +32,7 @@ impl PyExponential {
     /// Args:
     ///     lambda (float): The rate parameter of the distribution. Must be > 0.
     #[new]
-    fn new(lambda: f64) -> PyResult<Self> {
+    fn new(lambda: f64, x_min: f64) -> PyResult<Self> {
         if lambda <= 0.0 {
             return Err(pyo3::exceptions::PyValueError::new_err(
                 "lambda must be positive.",
@@ -38,7 +40,7 @@ impl PyExponential {
         }
         // This creates an instance of the original Exponential struct from the `powerlaw` crate.
         Ok(PyExponential {
-            inner: Exponential { lambda },
+            inner: Exponential { lambda, x_min },
         })
     }
 
@@ -85,5 +87,6 @@ impl PyExponential {
 pub fn create_module(py: Python<'_>) -> PyResult<Bound<'_, PyModule>> {
     let m = PyModule::new(py, "exponential")?;
     m.add_class::<PyExponential>()?;
+    m.add_submodule(&estimation::create_module(py)?)?;
     Ok(m)
 }
