@@ -11,6 +11,10 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
+dependencies = [
+    "numpy>=1.24.4",
+    "matplotlib>=3.7.5",
+]
 
 authors = [
   {email = "aulichny@protonmail.com"},

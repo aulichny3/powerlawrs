@@ -120,7 +120,7 @@ pub mod sim {
         // implications vs being called directly from powerlaw::dist::pareto::gof
         let powerlaw_params = sim::SimParams::from(sim_params);
 
-        let result = sim::generate_synthetic_datasets(&data, x_min, powerlaw_params, alpha);
+        let result = sim::generate_synthetic_datasets(&data, alpha, x_min, powerlaw_params);
 
         Ok(result)
     }

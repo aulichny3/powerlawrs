@@ -9,6 +9,8 @@
 
 -   **Parameter Estimation**: Estimates the parameters (`x_min`, `alpha`) of a power-law distribution from data.
 -   **Goodness-of-Fit**: Uses the Kolmogorov-Smirnov (KS) statistic to find the best-fitting parameters.
+-   **Data Visualization**: Includes a `plot()` method to visually inspect the data and the fitted model on a log-log scale.
+-   **Additional Distributions**: Provides functionality for other distributions, such as the `exponential` distribution.
 -   **High Performance**: Computationally intensive tasks are parallelized in the Rust core for significant speedups.
 -   **Flexible API**: Offers both a simple functional API for quick analyses and a class-based API for more detailed work.
 
@@ -68,12 +70,10 @@
 
 ## Dependencies
 
--   The core `powerlawrs` library has no Python dependencies.
--   Development dependencies (for running the example [notebooks](https://github.com/aulichny3/powerlawrs/blob/main/Notebooks/)) are listed in `requirements.txt` and include:
-    -   `jupyterlab`: For running the example notebooks.
-    -   `numpy`: Used in the example notebooks.
-    -   `polars`: Used for data loading in the example notebooks.
-    -   `matplotlib`: Used for data-viz in the Quickstart notebook.
+-   `numpy`
+-   `matplotlib`
+
+Development dependencies (for running the example [notebooks](https://github.com/aulichny3/powerlawrs/blob/main/Notebooks/)) are listed in `[project.optional-dependencies].dev` in `pyproject.toml`.
 
 ## Usage
 
@@ -101,6 +101,39 @@ print(f"Alpha: {fit_results.alpha}")
 print(f"X_min: {fit_results.x_min}")
 print(f"KS Statistic: {fit_results.D}")
 print(f"Tail Length: {fit_results.len_tail}")
+```
+
+### Visualizing the Fit
+
+After fitting the data, you can use the `plot()` method to visually inspect the fit.
+
+```python
+# Assuming 'data' is loaded and fitted as above
+p = powerlawrs.Powerlaw(data)
+p.fit()
+p.plot()
+```
+
+This will generate two plots: one showing the CCDF of the full data with the scaled model, and another showing just the tail of the distribution.
+
+### Working with Other Distributions
+
+`powerlawrs` also provides tools for other common distributions.
+
+```python
+import powerlawrs
+
+# Analyze an exponential distribution
+data = [1.2, 1.5, 1.9, 2.3, 2.8, 3.1, 3.5]
+x_min = 1.0
+
+# Estimate the lambda parameter
+lambda_hat = powerlawrs.exponential.estimation.lambda_hat(data, x_min)
+print(f"Estimated Lambda: {lambda_hat}")
+
+# Create an exponential distribution object
+exp_dist = powerlawrs.exponential.Exponential(lambda_hat, x_min)
+print(f"PDF at x=2.0: {exp_dist.pdf(2.0)}")
 ```
 
 ### Class-based API
