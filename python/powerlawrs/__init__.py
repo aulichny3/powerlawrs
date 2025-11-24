@@ -123,7 +123,7 @@ def fit(data):
     """
     p = Powerlaw(data)
     p.fit()
-    return p.Fitment
+    return p
 
 # Define what gets imported with 'from powerlawrs import *'
 __all__ = [
