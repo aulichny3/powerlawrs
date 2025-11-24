@@ -89,18 +89,15 @@ The `powerlawrs.fit()` function is the most straightforward way to fit a power-l
 import powerlawrs
 import polars as pl
 
-# 1. Load your data into a list or Polars Series
+# 1. Load your data into a list, Polars Series, or numpy array 
 # The data should be a 1-dimensional array of numbers.
 data = pl.read_csv("reference_data/blackouts.txt", has_header=True).to_series()
 
-# 2. Fit the data
-fit_results = powerlawrs.fit(data)
+# 2. Fit the data:
+p = powerlawrs.fit(data)
 
-# 3. Print the results
-print(f"Alpha: {fit_results.alpha}")
-print(f"X_min: {fit_results.x_min}")
-print(f"KS Statistic: {fit_results.D}")
-print(f"Tail Length: {fit_results.len_tail}")
+# 3. Print the Fitment object results:
+print(p.Fitment)
 ```
 
 ### Visualizing the Fit
@@ -109,12 +106,12 @@ After fitting the data, you can use the `plot()` method to visually inspect the 
 
 ```python
 # Assuming 'data' is loaded and fitted as above
-p = powerlawrs.Powerlaw(data)
-p.fit()
 p.plot()
 ```
 
 This will generate two plots: one showing the CCDF of the full data with the scaled model, and another showing just the tail of the distribution.
+
+![plot demo png](.github/plot1.gif)
 
 ### Working with Other Distributions
 
@@ -123,7 +120,7 @@ This will generate two plots: one showing the CCDF of the full data with the sca
 ```python
 import powerlawrs
 
-# Analyze an exponential distribution
+# Analyze a shifted exponential distribution
 data = [1.2, 1.5, 1.9, 2.3, 2.8, 3.1, 3.5]
 x_min = 1.0
 
