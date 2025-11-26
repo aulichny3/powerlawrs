@@ -77,6 +77,18 @@ impl PyExponential {
         self.inner.loglikelihood(&x)
     }
 
+    /// Set the name of the distribution
+    #[pyo3(text_signature = "($self)")]
+    fn name(&self) -> &str {
+        self.inner.name()
+    }
+
+    /// Fitted distribution parameters
+    #[pyo3(text_signature = "($self)")]
+    fn parameters(&self) -> Vec<(&'static str, f64)> {
+        self.inner.parameters()
+    }
+
     #[getter]
     fn lambda(&self) -> f64 {
         self.inner.lambda
