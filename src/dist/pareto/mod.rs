@@ -6,6 +6,7 @@
 
 //! PyO3 wrappers for the Pareto distribution functions from the `powerlaw` crate.
 
+use crate::dist::pareto::gof::PyParetoFit;
 use powerlaw::dist::pareto::Pareto;
 use powerlaw::dist::Distribution;
 use pyo3::prelude::*;
@@ -86,7 +87,7 @@ impl PyPareto {
         self.inner.loglikelihood(&x)
     }
 
-      /// Set the name of the distribution
+    /// Set the name of the distribution
     #[pyo3(text_signature = "($self)")]
     fn name(&self) -> &str {
         self.inner.name()
@@ -96,6 +97,17 @@ impl PyPareto {
     #[pyo3(text_signature = "($self)")]
     fn parameters(&self) -> Vec<(&'static str, f64)> {
         self.inner.parameters()
+    }
+
+    /// Creates a `Pareto` distribution directly from a `Fitment` result.
+    ///
+    /// This allows for a clean conversion from the results of a goodness-of-fit test
+    /// to a concrete distribution instance.
+    #[staticmethod]
+    fn from_fitment(fitment: &PyParetoFit) -> PyResult<Self> {
+        let alpha = fitment.alpha;
+        let x_min = fitment.x_min;
+        Self::new(alpha, x_min)
     }
 
     #[getter]

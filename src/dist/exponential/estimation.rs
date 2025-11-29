@@ -12,7 +12,7 @@ use pyo3::prelude::*;
 
 /// Python wrapper for the `lambda_hat` function.
 #[pyfunction]
-fn lambda_hat(mut data: Vec<f64>, x_min: f64) -> PyResult<f64> {
+pub fn lambda_hat(mut data: Vec<f64>, x_min: f64) -> PyResult<f64> {
     let result = rust_estimation::lambda_hat(&mut data, x_min);
     Ok(result)
 }

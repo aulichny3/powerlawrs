@@ -9,6 +9,7 @@
 
 pub mod estimation;
 
+use crate::dist::pareto::gof::PyParetoFit;
 use powerlaw::dist::{exponential::Exponential, Distribution};
 use pyo3::prelude::*;
 
@@ -87,6 +88,13 @@ impl PyExponential {
     #[pyo3(text_signature = "($self)")]
     fn parameters(&self) -> Vec<(&'static str, f64)> {
         self.inner.parameters()
+    }
+
+    #[staticmethod]
+    fn from_fitment(data: Vec<f64>, fitment: &PyParetoFit) -> PyResult<Self> {
+        let lam: Result<f64, PyErr> = estimation::lambda_hat(data, fitment.x_min);
+
+        Self::new(lam?, fitment.x_min)
     }
 
     #[getter]

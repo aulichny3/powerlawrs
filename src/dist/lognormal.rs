@@ -76,7 +76,7 @@ impl PyLognormal {
         self.inner.loglikelihood(&x)
     }
 
-      /// Set the name of the distribution
+    /// Set the name of the distribution
     #[pyo3(text_signature = "($self)")]
     fn name(&self) -> &str {
         self.inner.name()
