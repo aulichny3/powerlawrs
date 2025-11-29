@@ -96,8 +96,8 @@ data = pl.read_csv("reference_data/blackouts.txt", has_header=True).to_series()
 # 2. Fit the data:
 p = powerlawrs.fit(data)
 
-# 3. Print the Fitment object results:
-print(p.Fitment)
+# 3. Print the ParetoFit object results:
+print(p.ParetoFit)
 ```
 
 ### Visualizing the Fit
