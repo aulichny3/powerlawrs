@@ -2,6 +2,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/powerlawrs.svg)](https://pypi.org/project/powerlawrs/)
 [![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](./LICENSE-MIT)
+[![Docs](https://app.readthedocs.org/projects/powerlawrs/badge/?version=latest)](https://powerlawrs.readthedocs.io/en/latest/)
 
 `powerlawrs` is a Python package for analyzing power-law distributions in empirical data. It is built on a high-performance Rust crate [powerlaw](https://github.com/aulichny3/powerlaw), providing both speed and ease of use for Python users. The methodology is heavily based on the techniques and statistical framework described in the paper ['Power-Law Distributions in Empirical Data'](https://doi.org/10.1137/070710111) by Aaron Clauset, Cosma Rohilla Shalizi, and M. E. J. Newman.
 
