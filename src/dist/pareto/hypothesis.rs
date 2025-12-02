@@ -58,7 +58,7 @@ fn hypothesis_test(
     x_min: f64,
     best_d: f64,
 ) -> PyResult<PyH0> {
-    let result = rust_hypothesis::hypothesis_test(data, prec, alpha, x_min, best_d);
+    let result = rust_hypothesis::hypothesis_test(&data, prec, alpha, x_min, best_d);
     Ok(result.into())
 }
 

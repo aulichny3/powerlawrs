@@ -11,6 +11,7 @@
 -   **Parameter Estimation**: Estimates the parameters (`x_min`, `alpha`) of a power-law distribution from data.
 -   **Goodness-of-Fit**: Uses the Kolmogorov-Smirnov (KS) statistic to find the best-fitting parameters.
 -   **Data Visualization**: Includes a `plot()` method to visually inspect the data and the fitted model on a log-log scale.
+-   **Vuongs Closeness Test**: Model selection by comparing vectors of Log-Likelihoods from two distributions.
 -   **Additional Distributions**: Provides functionality for other distributions, such as the `exponential` distribution.
 -   **High Performance**: Computationally intensive tasks are parallelized in the Rust core for significant speedups.
 -   **Flexible API**: Offers both a simple functional API for quick analyses and a class-based API for more detailed work.

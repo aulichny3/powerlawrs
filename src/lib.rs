@@ -19,6 +19,7 @@ fn _powerlawrs(m: &Bound<'_, PyModule>) -> PyResult<()> {
     stats_module.add_submodule(&stats::descriptive::create_module(m.py())?)?;
     stats_module.add_submodule(&stats::random::create_module(m.py())?)?;
     stats_module.add_submodule(&stats::ks::create_module(m.py())?)?;
+    stats_module.add_submodule(&stats::compare::create_module(m.py())?)?;
     m.add_submodule(&stats_module)?;
 
     // Create the util submodule

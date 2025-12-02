@@ -20,15 +20,40 @@ use pyo3::prelude::*;
 ///    numbers = powerlawrs.util.linspace(0.0, 1.0, 5)
 ///    # numbers is [0.0, 0.25, 0.5, 0.75, 1.0]
 #[pyfunction]
-fn linspace(start: f64, end: f64, n: usize) -> PyResult<Vec<f64>> {
+pub fn linspace(start: f64, end: f64, n: usize) -> PyResult<Vec<f64>> {
     let set = util::linspace(start, end, n);
     Ok(set)
 }
+
+/// Computes the error function of `x`, often denoted as `erf(x)`.
+///
+/// The error function is a special function of sigmoid shape that occurs in probability,
+/// statistics, and partial differential equations. It is defined as:
+///
+/// .. math::
+///    \\mathrm{erf}(x) = \\frac{2}{\\sqrt{\\pi}} \\int_0^x e^{-t^2}\\,dt
+///
+/// Example
+/// -------
+/// .. code-block:: python
+///
+///    import powerlawrs
+///
+///    result = powerlawrs.util.erf(0.0)
+///    # result is 0.0
+///    result = powerlawrs.util.erf(1.0)
+///    # result is approx 0.8427
+#[pyfunction]
+pub fn erf(x: f64) -> f64 {
+    util::erf(x)
+}
+
 
 /// Creates the 'util' Python submodule
 pub fn create_module(py: Python<'_>) -> PyResult<Bound<'_, PyModule>> {
     let m = PyModule::new(py, "util")?;
     m.add_function(wrap_pyfunction!(linspace, &m)?)?;
+    m.add_function(wrap_pyfunction!(erf, &m)?)?;
 
     Ok(m)
 }
