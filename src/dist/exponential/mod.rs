@@ -22,7 +22,7 @@ use pyo3::prelude::*;
 ///     x_min (float): The minimum value of the distribution (scale parameter). Must be > 0.
 /// It does not contain any logic itself, but calls the underlying Rust implementation.
 #[pyclass(name = "Exponential")]
-struct PyExponential {
+    struct PyExponential {
     inner: Exponential,
 }
 

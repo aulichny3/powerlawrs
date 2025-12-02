@@ -199,3 +199,52 @@ pub mod ks {
         Ok(m)
     }
 }
+
+pub mod compare {
+    use powerlaw::stats;
+    use pyo3::prelude::*;
+
+
+    /// Performs Vuong's likelihood ratio test to compare two non-nested distributions.
+    ///
+    /// This test determines if one distribution provides a significantly better fit
+    /// to the data than another.
+    ///
+    /// Args:
+    ///     dist1 (list[float]): The first distribution's data points (e.g., log-likelihoods).
+    ///     dist2 (list[float]): The second distribution's data points (e.g., log-likelihoods).
+    ///
+    /// Returns:
+    ///     tuple[float, float]: A tuple containing the Z-score and the p-value.
+    ///     A positive Z-score indicates that the first distribution is a better fit,
+    ///     while a negative Z-score indicates the second is better. The p-value
+    ///     indicates the statistical significance of the result.
+    ///
+    /// Example
+    /// -------
+    /// .. code-block:: python
+    ///
+    ///    import powerlawrs
+    ///    import numpy as np
+    ///
+    ///    # Assume dist1_ll and dist2_ll are arrays of log-likelihoods
+    ///    # for two different models on the same data.
+    ///    dist1_ll = np.random.normal(loc=0.5, scale=1.0, size=100).tolist()
+    ///    dist2_ll = np.random.normal(loc=0.2, scale=1.0, size=100).tolist()
+    ///
+    ///    z, p_value = powerlawrs.stats.compare.vuongs_test(dist1_ll, dist2_ll)
+    ///    print(f"Z-score: {z}, P-value: {p_value}")
+    ///    # If z > 0 and p_value < 0.05, then dist1 is a significantly better fit.
+    #[pyfunction]
+    pub fn vuongs_test(dist1: Vec<f64>, dist2: Vec<f64>) -> (f64, f64) {
+        let (z, p_value) = stats::compare::vuongs_test(&dist1, &dist2);
+        (z, p_value)
+    }
+
+    /// create the "compare" sub module
+    pub fn create_module(py: Python<'_>) -> PyResult<Bound<'_, PyModule>> {
+        let m = PyModule::new(py, "compare")?;
+        m.add_function(wrap_pyfunction!(vuongs_test, &m)?)?;
+        Ok(m)
+    }
+}

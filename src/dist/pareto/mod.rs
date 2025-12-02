@@ -25,7 +25,7 @@ pub mod hypothesis;
 ///
 /// It does not contain any logic itself, but calls the underlying Rust implementation.
 #[pyclass(name = "Pareto")]
-struct PyPareto {
+    struct PyPareto {
     inner: Pareto,
 }
 
