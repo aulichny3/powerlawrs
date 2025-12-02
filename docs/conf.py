@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.abspath('..'))
 project = 'powerlawrs'
 copyright = '2025, Adam Ulichny'
 author = 'Adam Ulichny'
-release = '0.0.12'
+release = '0.0.13'
 
 # -- General configuration ---------------------------------------------------
 
