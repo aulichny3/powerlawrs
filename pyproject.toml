@@ -34,7 +34,6 @@ dev = [
     "jupyterlab>=4.3.8",
     "numpy>=1.24.4",
     "polars>=1.8.2",
-    "matplotlib>=3.7.5",
 ]
 
 [tool.maturin]
