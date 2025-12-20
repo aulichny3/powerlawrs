@@ -12,14 +12,25 @@ use pyo3::prelude::*;
 
 /// A Python-compatible wrapper for the `Powerlaw` struct from the `powerlaw` crate.
 ///
-/// Creates a new Powerlaw distribution instance.
-/// The `alpha` parameter is equivalent to `alpha + 1` in the Pareto Type I distribution.
+/// Represents a generic Power-Law distribution where the probability density function (PDF) is:
+/// f(x) = C * x^(-alpha)
+///
+/// This simplifies to a Pareto Type I distribution.
+/// Note: The `alpha` parameter here is the power-law exponent. It is equal to `1 + alpha_pareto`,
+/// where `alpha_pareto` is the shape parameter of the standard Pareto Type I distribution.
 ///
 /// Args:
 ///     alpha (float): The scaling exponent of the distribution. Must be > 1.
 ///     x_min (float): The minimum value of the distribution. Must be > 0.
 ///
-/// It does not contain any logic itself, but calls the underlying Rust implementation.
+/// Example:
+/// --------
+/// .. code-block:: python
+///
+///    import powerlawrs
+///    # Create a distribution with exponent 2.5 (equivalent to Pareto alpha 1.5)
+///    dist = powerlawrs.dist.powerlaw.Powerlaw(alpha=2.5, x_min=1.0)
+///    pdf_val = dist.pdf(2.0)
 #[pyclass(name = "Powerlaw")]
 struct PyPowerlaw {
     inner: Powerlaw,
@@ -109,7 +120,7 @@ impl PyPowerlaw {
 /// Python wrapper that calls the `alpha_hat` function from the `powerlaw` crate.
 ///
 /// Calculates the maximum likelihood estimate (MLE) for the `alpha` parameter
-/// of a generic Power-Law distribution.
+/// of a generic Power-Law distribution. This returns the power-law exponent (f(x) ~ x^-alpha).
 #[pyfunction]
 fn alpha_hat(data: Vec<f64>, x_min: f64) -> PyResult<f64> {
     if x_min <= 0.0 {
