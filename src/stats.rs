@@ -204,7 +204,6 @@ pub mod compare {
     use powerlaw::stats;
     use pyo3::prelude::*;
 
-
     /// Performs Vuong's likelihood ratio test to compare two non-nested distributions.
     ///
     /// This test determines if one distribution provides a significantly better fit

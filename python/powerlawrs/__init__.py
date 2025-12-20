@@ -134,6 +134,7 @@ __all__ = [
     "util",
     "dist",
     "exponential",
+    "lognormal",
     "powerlaw",
     "pareto",
     "estimation",

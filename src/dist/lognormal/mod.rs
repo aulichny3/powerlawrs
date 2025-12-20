@@ -14,14 +14,21 @@ use pyo3::prelude::*;
 
 /// A Python-compatible wrapper for the `Lognormal` struct from the `powerlaw` crate.
 ///
-/// Creates a new Lognormal distribution instance.
+/// The Lognormal distribution is a continuous probability distribution of a random variable
+/// whose logarithm is normally distributed.
 ///
 /// Args:
 ///     mu (float): The mean of the underlying normal distribution.
 ///     sigma (float): The standard deviation of the underlying normal distribution. Must be > 0.
-///     x_min (float): The minimum value of the distribution (truncation point). Must be > 0.
+///     x_min (float, optional): The minimum value of the distribution (truncation point). Defaults to 0.0.
 ///
-/// It does not contain any logic itself, but calls the underlying Rust implementation.
+/// Example:
+/// --------
+/// .. code-block:: python
+///
+///    import powerlawrs
+///    dist = powerlawrs.dist.lognormal.Lognormal(mu=0.0, sigma=1.0, x_min=1.0)
+///    pdf_val = dist.pdf(2.0)
 #[pyclass(name = "Lognormal")]
 struct PyLognormal {
     inner: Lognormal,
@@ -49,13 +56,30 @@ impl PyLognormal {
         })
     }
 
-    /// Calls 'from_fitment' method from the `powerlaw` crate. 
+    /// Creates a new Lognormal distribution by fitting it to data using the results of a Pareto fit.
+    ///
+    /// This method uses the Newton-Raphson method to find the maximum likelihood estimates
+    /// for mu and sigma, accounting for the truncation at x_min.
+    ///
+    /// Args:
+    ///     data (list[float]): The dataset to fit.
+    ///     fitment (ParetoFit): The result of a previous Pareto fit (used for x_min).
+    ///
+    /// Returns:
+    ///     Lognormal: A new Lognormal instance with fitted parameters.
     #[staticmethod]
     #[pyo3(text_signature = "(data, fitment)")]
     fn from_fitment(data: Vec<f64>, fitment: &PyParetoFit) -> PyResult<Self> {
-        let (mu, sigma) = powerlaw::dist::lognormal::estimation::lognormal_mle_truncated_par(&data, fitment.x_min);
+        let (mu, sigma) = powerlaw::dist::lognormal::estimation::lognormal_mle_truncated_par(
+            &data,
+            fitment.x_min,
+        );
         Ok(PyLognormal {
-            inner: Lognormal { mu, sigma, x_min: fitment.x_min }
+            inner: Lognormal {
+                mu,
+                sigma,
+                x_min: fitment.x_min,
+            },
         })
     }
 
