@@ -7,6 +7,8 @@
 //! PyO3 wrappers for the generic Power-Law distribution functions from the `powerlaw` crate.
 //! This file provides thin wrappers that call the functionality from the `powerlaw` crate.
 
+pub mod estimation;
+
 use powerlaw::dist::{powerlaw::Powerlaw, Distribution};
 use pyo3::prelude::*;
 
