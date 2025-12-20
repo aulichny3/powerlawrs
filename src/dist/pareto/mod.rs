@@ -23,6 +23,14 @@ pub mod hypothesis;
 ///     alpha (float): The shape parameter of the distribution. Must be > 0.
 ///     x_min (float): The minimum value of the distribution (scale parameter). Must be > 0.
 ///
+/// Example:
+/// --------
+/// .. code-block:: python
+///
+///    import powerlawrs
+///    dist = powerlawrs.dist.pareto.Pareto(alpha=2.5, x_min=1.0)
+///    pdf_val = dist.pdf(2.0)
+///
 /// It does not contain any logic itself, but calls the underlying Rust implementation.
 #[pyclass(name = "Pareto")]
 struct PyPareto {
