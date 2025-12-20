@@ -24,17 +24,17 @@ jobs:
     strategy:
       matrix:
         platform:
-          - runner: ubuntu-22.04
+          - runner: ubuntu-24.04
             target: x86_64
-          - runner: ubuntu-22.04
+          - runner: ubuntu-24.04
             target: x86
-          - runner: ubuntu-22.04
+          - runner: ubuntu-24.04
             target: aarch64
-          - runner: ubuntu-22.04
+          - runner: ubuntu-24.04
             target: armv7
-          - runner: ubuntu-22.04
+          - runner: ubuntu-24.04
             target: s390x
-          - runner: ubuntu-22.04
+          - runner: ubuntu-24.04
             target: ppc64le
     steps:
       - uses: actions/checkout@v4
@@ -51,7 +51,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-linux-${{ matrix.platform.target }}
+          name: wheels-linux-${{ matrix.platform.target }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: dist
 
   musllinux:
@@ -59,13 +59,13 @@ jobs:
     strategy:
       matrix:
         platform:
-          - runner: ubuntu-22.04
+          - runner: ubuntu-24.04
             target: x86_64
-          - runner: ubuntu-22.04
+          - runner: ubuntu-24.04
             target: x86
-          - runner: ubuntu-22.04
+          - runner: ubuntu-24.04
             target: aarch64
-          - runner: ubuntu-22.04
+          - runner: ubuntu-24.04
             target: armv7
     steps:
       - uses: actions/checkout@v4
@@ -82,7 +82,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-musllinux-${{ matrix.platform.target }}
+          name: wheels-musllinux-${{ matrix.platform.target }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: dist
 
   windows:
@@ -109,7 +109,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-windows-${{ matrix.platform.target }}
+          name: wheels-windows-${{ matrix.platform.target }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: dist
 
   macos:
@@ -131,7 +131,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-macos-${{ matrix.platform.target }}
+          name: wheels-macos-${{ matrix.platform.target }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: dist
 
   sdist:
