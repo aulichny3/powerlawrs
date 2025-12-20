@@ -113,14 +113,10 @@ jobs:
           path: dist
 
   macos:
-    runs-on: ${{ matrix.platform.runner }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        platform:
-          - runner: macos-14
-            target: aarch64
-          - runner: macos-15
-            target: aarch64
+        os: [macos-14, macos-15, macos-26]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
