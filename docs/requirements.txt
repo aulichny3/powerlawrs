@@ -2,3 +2,4 @@
 sphinx
 furo
 maturin
+myst-parser
