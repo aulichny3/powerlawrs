@@ -19,12 +19,13 @@ stats = _powerlawrs.stats
 util = _powerlawrs.util
 dist = _powerlawrs.dist
 
-# For convenience, you can also expose nested modules
+# For convenience, nested modules are exposed directly
 exponential = dist.exponential
 powerlaw = dist.powerlaw
 pareto = dist.pareto
+lognormal = dist.lognormal
 
-# The user's example `Powerlaw` class needs these
+# The `Powerlaw` class needs these
 estimation = pareto.estimation
 gof = pareto.gof
 hypothesis = pareto.hypothesis
@@ -133,6 +134,7 @@ __all__ = [
     "util",
     "dist",
     "exponential",
+    "lognormal",
     "powerlaw",
     "pareto",
     "estimation",

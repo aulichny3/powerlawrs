@@ -242,9 +242,9 @@ checksum = "f84267b20a16ea918e43c6a88433c2d54fa145c92a811b5b047ccbe153674483"
 
 [[package]]
 name = "powerlaw"
-version = "0.0.23"
+version = "0.0.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9ea70f3aa562c1aeb77f1b36ef843aba1f2d323712bbcce1d90b1cebd6f2be9e"
+checksum = "b3e472593be56f8842e102fa29438d4dbdc8e5f040adf154b0cc4ba5dc4b8230"
 dependencies = [
  "clap",
  "csv",

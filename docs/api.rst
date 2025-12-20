@@ -24,6 +24,9 @@ Modules related to statistical distributions.
 .. automodule:: powerlawrs.dist.powerlaw
    :members:
 
+.. automodule:: powerlawrs.dist.lognormal
+   :members:
+
 .. automodule:: powerlawrs.dist.pareto
    :members:
    :undoc-members:

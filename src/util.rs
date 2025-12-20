@@ -48,7 +48,6 @@ pub fn erf(x: f64) -> f64 {
     util::erf(x)
 }
 
-
 /// Creates the 'util' Python submodule
 pub fn create_module(py: Python<'_>) -> PyResult<Bound<'_, PyModule>> {
     let m = PyModule::new(py, "util")?;
